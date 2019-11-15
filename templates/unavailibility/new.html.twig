@@ -1,0 +1,11 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}New Unavailibility{% endblock %}
+
+{% block main %}
+    <h1>Create new Unavailibility</h1>
+
+    {{ include('unavailibility/_form.html.twig') }}
+
+    <a href="{{ path('unavailibilities_index') }}">back to list</a>
+{% endblock %}

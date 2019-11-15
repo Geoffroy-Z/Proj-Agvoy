@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
  */
@@ -55,13 +56,25 @@ class Room
     private $owner;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Region", inversedBy="rooms")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="room")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $region;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="room")
+     */
+    private $reservations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Unavailibility", mappedBy="room")
+     */
+    private $unavailibilities;
+
     public function __construct()
     {
-        $this->region = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->unavailibilities = new ArrayCollection();
     }
     
     
@@ -162,19 +175,21 @@ class Room
         return $this;
     }
 
-    /**
-     * @return Collection|Region[]
-     */
-    public function getRegion(): Collection
+    public function getRegion(): ?Region
     {
         return $this->region;
     }
-
-    public function addRegion(Region $region): self
+    
+/*     public function getRegionName(): ?string
     {
-        if (!$this->region->contains($region)) {
-            $this->region[] = $region;
-        }
+        $em = $this->getDoctrine()->getManager();
+        $region_name = $em->getRepository(Region::class)->findOneBy(array('id' => $this->region))->getName();
+        return $region;
+    } */
+
+    public function setRegion(Region $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }
@@ -190,5 +205,67 @@ class Room
     
     public function __toString() {
         return (string) $this->getId();
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->contains($reservation)) {
+            $this->reservations->removeElement($reservation);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getRoom() === $this) {
+                $reservation->setRoom(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Unavailibility[]
+     */
+    public function getUnavailibilities(): Collection
+    {
+        return $this->unavailibilities;
+    }
+
+    public function addUnavailibility(Unavailibility $unavailibility): self
+    {
+        if (!$this->unavailibilities->contains($unavailibility)) {
+            $this->unavailibilities[] = $unavailibility;
+            $unavailibility->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnavailibility(Unavailibility $unavailibility): self
+    {
+        if ($this->unavailibilities->contains($unavailibility)) {
+            $this->unavailibilities->removeElement($unavailibility);
+            // set the owning side to null (unless already changed)
+            if ($unavailibility->getRoom() === $this) {
+                $unavailibility->setRoom(null);
+            }
+        }
+
+        return $this;
     }
 }

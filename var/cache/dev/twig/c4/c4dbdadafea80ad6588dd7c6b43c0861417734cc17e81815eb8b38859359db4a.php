@@ -32,6 +32,7 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
             'custompage_style' => [$this, 'block_custompage_style'],
             'body' => [$this, 'block_body'],
             'menu' => [$this, 'block_menu'],
+            'alerts' => [$this, 'block_alerts'],
             'main' => [$this, 'block_main'],
             'footer' => [$this, 'block_footer'],
             'javascripts' => [$this, 'block_javascripts'],
@@ -69,18 +70,18 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 \t";
         // line 47
         $this->displayBlock('body', $context, $blocks);
-        // line 120
+        // line 151
         echo " ";
-        // line 121
+        // line 152
         echo "</body>
 ";
-        // line 122
+        // line 153
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 126
+        // line 157
         echo " ";
-        // line 127
+        // line 158
         $this->displayBlock('custompage_script', $context, $blocks);
-        // line 129
+        // line 160
         echo "
 </html>
 ";
@@ -188,10 +189,18 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 \t\t";
         // line 49
         $this->displayBlock('menu', $context, $blocks);
-        // line 84
+        // line 98
         echo " ";
-        // line 85
-        echo "             </header>
+        // line 99
+        echo "\t\t
+\t\t";
+        // line 100
+        $this->displayBlock('alerts', $context, $blocks);
+        // line 114
+        echo " ";
+        // line 115
+        echo "
+             </header>
 
 \t<div style=\"min-height: 90%\" class=\"container\">
 \t\t<div class=\"row\">
@@ -203,17 +212,17 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 \t\t<div class=\"container body-container\">
 <main>
 \t\t\t";
-        // line 96
+        // line 127
         $this->displayBlock('main', $context, $blocks);
-        // line 106
+        // line 137
         echo " ";
-        // line 107
+        // line 138
         echo "</main>
 \t\t</div> <!-- /.body-container -->
 \t\t";
-        // line 109
+        // line 140
         $this->displayBlock('footer', $context, $blocks);
-        // line 117
+        // line 148
         echo "
 \t</div>
 \t<!-- /.container -->
@@ -257,11 +266,38 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
         echo "
                         </ul>
                       </div>
+                      ";
+        // line 63
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 63, $this->source); })()), "user", [], "any", false, false, false, 63)) {
+            // line 64
+            echo "                      <div class=\"collapse navbar-collapse\" id=\"navbarsAccountDefault\">
+                        <ul class=\"navbar-nav ml-auto\">
+                          ";
+            // line 66
+            echo $this->extensions['Camurphy\BootstrapMenuBundle\Twig\Extension\MenuExtension']->renderMenu($this->env, "account");
+            echo "
+                        </ul>
+                      </div>
+                      ";
+        } else {
+            // line 70
+            echo "                      <div class=\"collapse navbar-collapse\" id=\"navbarsAnonAccountDefault\">
+                        <ul class=\"navbar-nav ml-auto\">
+                          ";
+            // line 72
+            echo $this->extensions['Camurphy\BootstrapMenuBundle\Twig\Extension\MenuExtension']->renderMenu($this->env, "anonymousaccount");
+            echo "
+                        </ul>
+                      </div>
+                      ";
+        }
+        // line 76
+        echo "                    </div>
     <h1>Menu</h1>
 
 </div>
                       ";
-        // line 81
+        // line 95
         echo "                    </div>
                   </nav>
 \t\t\t\t
@@ -274,7 +310,75 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 
     }
 
-    // line 96
+    // line 100
+    public function block_alerts($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "alerts"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "alerts"));
+
+        // line 101
+        echo "         ";
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 101, $this->source); })()), "session", [], "any", false, false, false, 101), "flashBag", [], "any", false, false, false, 101), "all", [], "any", false, false, false, 101));
+        foreach ($context['_seq'] as $context["type"] => $context["messages"]) {
+            // line 102
+            echo "            ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable($context["messages"]);
+            foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+                // line 103
+                echo "                ";
+                if (($context["type"] == "error")) {
+                    echo " ";
+                    $context["type"] = "danger";
+                    echo " ";
+                }
+                // line 104
+                echo "                ";
+                if (($context["type"] == "message")) {
+                    echo " ";
+                    $context["type"] = "info";
+                    echo " ";
+                }
+                // line 105
+                echo "        \t\t<div class=\"alert alert-";
+                echo twig_escape_filter($this->env, $context["type"], "html", null, true);
+                echo " alert-dismissible\" role=\"alert\">
+            \t\t<button type=\"button\" class=\"close\" data-dismiss=\"alert\">
+                \t\t<span aria-hidden=\"true\">&times;</span>
+                \t\t<span class=\"sr-only\">Close</span>
+            \t\t</button>
+            \t\t<p>";
+                // line 110
+                echo $context["message"];
+                echo "</p>
+       \t\t\t </div>
+            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 113
+            echo "        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['type'], $context['messages'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 114
+        echo "        ";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
+    // line 127
     public function block_main($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -284,7 +388,7 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "main"));
 
-        // line 97
+        // line 128
         echo "\t\t\t<div class=\"row\">
 \t\t\t\t<div class=\"col-md-12\">
 \t\t\t\t\t<p>
@@ -303,7 +407,7 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 
     }
 
-    // line 109
+    // line 140
     public function block_footer($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -313,7 +417,7 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 110
+        // line 141
         echo "\t\t<div class=\"row\">
 \t\t\t<div class=\"col-md-12\">
 \t\t\t\t<footer>
@@ -329,7 +433,7 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 
     }
 
-    // line 122
+    // line 153
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -339,14 +443,14 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 123
+        // line 154
         echo "  <!-- Bootstrap core JavaScript -->
   <script src=\"";
-        // line 124
+        // line 155
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/jquery/jquery.min.js"), "html", null, true);
         echo "\"></script>
   <script src=\"";
-        // line 125
+        // line 156
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/bootstrap/js/bootstrap.bundle.min.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -358,7 +462,7 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 
     }
 
-    // line 127
+    // line 158
     public function block_custompage_script($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -383,7 +487,7 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
 
     public function getDebugInfo()
     {
-        return array (  362 => 127,  350 => 125,  346 => 124,  343 => 123,  333 => 122,  317 => 110,  307 => 109,  288 => 97,  278 => 96,  265 => 81,  256 => 60,  247 => 54,  242 => 51,  240 => 50,  230 => 49,  217 => 117,  215 => 109,  211 => 107,  209 => 106,  207 => 96,  194 => 85,  192 => 84,  190 => 49,  187 => 48,  176 => 47,  164 => 35,  161 => 34,  151 => 33,  135 => 37,  133 => 33,  128 => 31,  125 => 30,  115 => 29,  96 => 28,  84 => 129,  82 => 127,  80 => 126,  78 => 122,  75 => 121,  73 => 120,  71 => 47,  67 => 45,  65 => 29,  61 => 28,  52 => 21,);
+        return array (  466 => 158,  454 => 156,  450 => 155,  447 => 154,  437 => 153,  421 => 141,  411 => 140,  392 => 128,  382 => 127,  372 => 114,  366 => 113,  357 => 110,  348 => 105,  341 => 104,  334 => 103,  329 => 102,  324 => 101,  314 => 100,  301 => 95,  295 => 76,  288 => 72,  284 => 70,  277 => 66,  273 => 64,  271 => 63,  265 => 60,  256 => 54,  251 => 51,  249 => 50,  239 => 49,  226 => 148,  224 => 140,  220 => 138,  218 => 137,  216 => 127,  202 => 115,  200 => 114,  198 => 100,  195 => 99,  193 => 98,  191 => 49,  188 => 48,  177 => 47,  165 => 35,  162 => 34,  152 => 33,  136 => 37,  134 => 33,  129 => 31,  126 => 30,  116 => 29,  97 => 28,  85 => 160,  83 => 158,  81 => 157,  79 => 153,  76 => 152,  74 => 151,  72 => 47,  68 => 45,  66 => 29,  62 => 28,  53 => 21,);
     }
 
     public function getSourceContext()
@@ -450,6 +554,20 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
                             {{ render_bootstrap_menu('main') }}
                         </ul>
                       </div>
+                      {% if app.user %}
+                      <div class=\"collapse navbar-collapse\" id=\"navbarsAccountDefault\">
+                        <ul class=\"navbar-nav ml-auto\">
+                          {{ render_bootstrap_menu('account') }}
+                        </ul>
+                      </div>
+                      {% else %}
+                      <div class=\"collapse navbar-collapse\" id=\"navbarsAnonAccountDefault\">
+                        <ul class=\"navbar-nav ml-auto\">
+                          {{ render_bootstrap_menu('anonymousaccount') }}
+                        </ul>
+                      </div>
+                      {% endif %}
+                    </div>
     <h1>Menu</h1>
 
 </div>
@@ -472,6 +590,23 @@ class __TwigTemplate_e81b33190a038b4087861331bed0acdd85adec52ca81f6c27c217f1da20
                   </nav>
 \t\t\t\t
 \t\t{% endblock %} {# menu #}
+\t\t
+\t\t{%  block alerts %}
+         {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                {%if type == 'error'%} {% set type = 'danger' %} {%endif%}
+                {%if type == 'message'%} {% set type = 'info' %} {%endif%}
+        \t\t<div class=\"alert alert-{{ type }} alert-dismissible\" role=\"alert\">
+            \t\t<button type=\"button\" class=\"close\" data-dismiss=\"alert\">
+                \t\t<span aria-hidden=\"true\">&times;</span>
+                \t\t<span class=\"sr-only\">Close</span>
+            \t\t</button>
+            \t\t<p>{{ message|raw }}</p>
+       \t\t\t </div>
+            {% endfor %}
+        {% endfor %}
+        {% endblock %} {# alerts #}
+
              </header>
 
 \t<div style=\"min-height: 90%\" class=\"container\">

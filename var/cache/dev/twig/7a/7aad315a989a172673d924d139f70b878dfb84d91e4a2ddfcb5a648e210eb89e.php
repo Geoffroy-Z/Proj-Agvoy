@@ -87,46 +87,74 @@ class __TwigTemplate_0513fb1c4a0f3e46ea71301eff74135cbae2800b70e6715353262cf4911
         // line 6
         echo "
         <h1>Rooms list</h1>
-        <p>Here are all your rooms:</p>
+        <p>Here are the rooms you liked</p>
 \t
     <table class=\"table\">
         <tbody>
+        \t
             <tr>
             <th>Id</th>
+            <th>Summary</th>
+            <th>Capacity</th>
+            <th>Price</th>
+            <th>Superficie</th>
+            </tr>
+                        
+           
            ";
-        // line 14
+        // line 22
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["rooms"]) || array_key_exists("rooms", $context) ? $context["rooms"] : (function () { throw new RuntimeError('Variable "rooms" does not exist.', 14, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["rooms"]) || array_key_exists("rooms", $context) ? $context["rooms"] : (function () { throw new RuntimeError('Variable "rooms" does not exist.', 22, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["room"]) {
-            // line 15
-            echo "            <td> <a href=\"/room/";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 15), "html", null, true);
-            echo "\">Room ";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 15), "html", null, true);
+            // line 23
+            echo "           <tr>
+             <td> <a href=\"/room/";
+            // line 24
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 24), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 24), "html", null, true);
             echo "</a> </td>
              <td> ";
-            // line 16
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "summary", [], "any", false, false, false, 16), "html", null, true);
+            // line 25
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "summary", [], "any", false, false, false, 25), "html", null, true);
             echo " </td>
              <td> ";
-            // line 17
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "capacity", [], "any", false, false, false, 17), "html", null, true);
+            // line 26
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "capacity", [], "any", false, false, false, 26), "html", null, true);
             echo " </td>
              <td> ";
-            // line 18
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "price", [], "any", false, false, false, 18), "html", null, true);
+            // line 27
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "price", [], "any", false, false, false, 27), "html", null, true);
             echo " </td>
-              <td> ";
-            // line 19
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "superficy", [], "any", false, false, false, 19), "html", null, true);
+             <td> ";
+            // line 28
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "superficy", [], "any", false, false, false, 28), "html", null, true);
             echo " </td>
-            ";
+             <td>";
+            // line 29
+            if (twig_in_filter(twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 29), (isset($context["likes"]) || array_key_exists("likes", $context) ? $context["likes"] : (function () { throw new RuntimeError('Variable "likes" does not exist.', 29, $this->source); })()))) {
+                // line 30
+                echo "                    <a href=\"/room/";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 30), "html", null, true);
+                echo "/like\"> Dislike </a>
+                ";
+            } else {
+                // line 32
+                echo "                \t<a href=\"/room/";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 32), "html", null, true);
+                echo "/like\"> Like </a>
+                ";
+            }
+            // line 33
+            echo "</td>
+           </tr> 
+           ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['room'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 21
-        echo "            </tr>
+        // line 36
+        echo "            
             </tbody>
     </table>
             
@@ -151,7 +179,7 @@ class __TwigTemplate_0513fb1c4a0f3e46ea71301eff74135cbae2800b70e6715353262cf4911
 
     public function getDebugInfo()
     {
-        return array (  129 => 21,  121 => 19,  117 => 18,  113 => 17,  109 => 16,  102 => 15,  98 => 14,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  157 => 36,  149 => 33,  143 => 32,  137 => 30,  135 => 29,  131 => 28,  127 => 27,  123 => 26,  119 => 25,  113 => 24,  110 => 23,  106 => 22,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -163,20 +191,35 @@ class __TwigTemplate_0513fb1c4a0f3e46ea71301eff74135cbae2800b70e6715353262cf4911
 {% block main %}
 
         <h1>Rooms list</h1>
-        <p>Here are all your rooms:</p>
+        <p>Here are the rooms you liked</p>
 \t
     <table class=\"table\">
         <tbody>
+        \t
             <tr>
             <th>Id</th>
+            <th>Summary</th>
+            <th>Capacity</th>
+            <th>Price</th>
+            <th>Superficie</th>
+            </tr>
+                        
+           
            {% for room in rooms %}
-            <td> <a href=\"/room/{{ room.id }}\">Room {{ room.id }}</a> </td>
+           <tr>
+             <td> <a href=\"/room/{{ room.id }}\">{{ room.id }}</a> </td>
              <td> {{ room.summary }} </td>
              <td> {{ room.capacity }} </td>
              <td> {{ room.price }} </td>
-              <td> {{ room.superficy }} </td>
-            {% endfor %}
-            </tr>
+             <td> {{ room.superficy }} </td>
+             <td>{% if room.id in likes %}
+                    <a href=\"/room/{{room.id}}/like\"> Dislike </a>
+                {% else %}
+                \t<a href=\"/room/{{room.id}}/like\"> Like </a>
+                {% endif %}</td>
+           </tr> 
+           {% endfor %}
+            
             </tbody>
     </table>
             

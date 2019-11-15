@@ -5,20 +5,35 @@
 {% block main %}
 
         <h1>Rooms list</h1>
-        <p>Here are all your rooms:</p>
+        <p>Here are the rooms you liked</p>
 	
     <table class="table">
         <tbody>
+        	
             <tr>
             <th>Id</th>
+            <th>Summary</th>
+            <th>Capacity</th>
+            <th>Price</th>
+            <th>Superficie</th>
+            </tr>
+                        
+           
            {% for room in rooms %}
-            <td> <a href="/room/{{ room.id }}">Room {{ room.id }}</a> </td>
+           <tr>
+             <td> <a href="/room/{{ room.id }}">{{ room.id }}</a> </td>
              <td> {{ room.summary }} </td>
              <td> {{ room.capacity }} </td>
              <td> {{ room.price }} </td>
-              <td> {{ room.superficy }} </td>
-            {% endfor %}
-            </tr>
+             <td> {{ room.superficy }} </td>
+             <td>{% if room.id in likes %}
+                    <a href="/room/{{room.id}}/like"> Dislike </a>
+                {% else %}
+                	<a href="/room/{{room.id}}/like"> Like </a>
+                {% endif %}</td>
+           </tr> 
+           {% endfor %}
+            
             </tbody>
     </table>
             

@@ -1,14 +1,76 @@
 {% extends 'baselayout.html.twig' %}
 
-{% block title %}Hello RoomController!{% endblock %}
+{% block title %}Room index{% endblock %}
 
 {% block main %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Room index</h1>
+    <div>Filtrer les annonces:
+    
+<form style="text-align:center;" method="get" action="/room/" method="post">
+<label>
+	<label>Départ
+	<input type="date" name="startDate" value= >
+  </label>
+  <label>Arrivée
+	<input type="date" name="endDate value= ">
+	</label>
+<select name="region" value= >
+        {% for region in regions %}
+  <option value={{ region.id }}>{{ region.name }}</option>
+          {% endfor %}
+  
+</select>
 
-<div class="example-wrapper">
-    <h1>Room</h1>
-</div>
+  <input type="submit" value="Search"><br>
+</form>
+	
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Summary</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Superficy</th>
+                <th>Price</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if rooms is defined %}
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.id }}</td>
+                <td>{{ room.summary }}</td>
+                <td>{{ room.description }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.superficy }}</td>
+                <td>{{ room.price }}</td>
+                <td>{{ room.address }}</td>
+                <td>
+                {% if room.id in likes %}
+                    <a href="/room/{{room.id}}/like"> Dislike </a>
+                {% else %}
+                	<a href="/room/{{room.id}}/like"> Like </a>
+                {% endif %}
+                    <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
+                    <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
+                    <a href="{{ path('reservation_new', {'id': room.id}) }}">Book</a>
+                    
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+    <div><a href="{{ path('room_new') }}">Create new</a></div>
+    <a href="{{ path('room_likes') }}">See the rooms you liked</a>
 {% endblock %}

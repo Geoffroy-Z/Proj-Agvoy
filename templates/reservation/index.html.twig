@@ -1,0 +1,48 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block main %}
+    <h1>Reservation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Room</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Confirmed</th>
+                <th>Additional_info</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.room }}</td>
+                <td>{{ reservation.arrival ? reservation.arrival|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.departure ? reservation.departure|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.confirmed ? 'Yes' : 'No' }}</td>
+                <td>{{ reservation.additionalInfo }}</td>
+                <td>
+                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                    {% if reservation.confirmed %}
+                    	<a href="{{ path('reservation_confirm', {'id': reservation.id}) }}">unconfirm</a>
+                    {% else %}
+                    	<a href="{{ path('reservation_confirm', {'id': reservation.id}) }}">confirm</a>
+					{% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservation_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}Unavailibility{% endblock %}
+
+{% block main %}
+    <h1>Unavailibility</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ unavailibility.id }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ unavailibility.start ? unavailibility.start|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ending</th>
+                <td>{{ unavailibility.ending ? unavailibility.ending|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('unavailibility_index') }}">back to list</a>
+
+    <a href="{{ path('unavailibility_edit', {'id': unavailibility.id}) }}">edit</a>
+
+    {{ include('unavailibility/_delete_form.html.twig') }}
+{% endblock %}

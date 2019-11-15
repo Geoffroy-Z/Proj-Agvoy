@@ -1,0 +1,41 @@
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}Unavailibilities index{% endblock %}
+
+{% block main %}
+<h1>Unvailibilities index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Room</th>
+                <th>Start</th>
+                <th>Ending</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if unavailibilities is defined %}
+        {% for unavailibility in unavailibilities %}
+            <tr>
+                <td>{{ unavailibility.id }}</td>
+                <td>{{ unavailibility.room }}</td>
+                <td>{{ unavailibility.StartAsString }}</td>
+                <td>{{ unavailibility.EndingAsString }}</td>
+                <td>
+                     <a href="{{ path('unavailibility_edit', {'id': unavailibility.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+    <div><a href="{{ path('new_unavailibility') }}">Create new</a></div>
+{% endblock %}

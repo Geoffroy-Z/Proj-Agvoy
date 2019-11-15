@@ -4,13 +4,19 @@ bootstrap_menu:
       items:
         rooms:
           label: 'Rooms'
-          route: 'room'
+          route: 'room_index'
         regions:
           label: 'Regions'
-          route: 'region_index'
+          route: 'admin_region_index'
         owners:
           label: 'Owners'
           route: 'owner'
+        unavailibitlities:
+          label: 'Unavailibilities'
+          route: 'unavailibilities_index'
+        reservation :
+          label: 'Reservations'
+          route: 'reservation_index'
          
     anonymousaccount:
       items:
