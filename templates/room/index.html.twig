@@ -113,11 +113,11 @@
                         {% else %}
                 		<a href="/room/{{room.id}}/like"> Like </a>
                         {% endif %}
-                        {% if room.owner.user is same as likes %}
-                        
+{#                         {% if room.owner.user is same as likes %}#}
+{#                         {% endif %}#}
                     	<a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
                     <a href="{{ path('reservation_new', {'id': room.id}) }}">Book</a>
-                    {% endif %}
+                    
                     
                     
                 </td>
