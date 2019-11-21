@@ -315,17 +315,18 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
                         echo "/like\"> Like </a>
                         ";
                     }
-                    // line 116
+                    // line 117
                     echo "                    \t<a href=\"";
-                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 116)]), "html", null, true);
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 117)]), "html", null, true);
                     echo "\">edit</a>
                     <a href=\"";
-                    // line 117
-                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_new", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 117)]), "html", null, true);
+                    // line 118
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_new", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 118)]), "html", null, true);
                     echo "\">Book</a>
+                    
                     ";
                 }
-                // line 119
+                // line 121
                 echo "                    
                     
                 </td>
@@ -334,7 +335,7 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
                 $context['_iterated'] = true;
             }
             if (!$context['_iterated']) {
-                // line 124
+                // line 126
                 echo "            <tr>
                 <td colspan=\"8\">no records found</td>
             </tr>
@@ -343,32 +344,32 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['room'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 128
+            // line 130
             echo "        ";
         }
-        // line 129
+        // line 131
         echo "        </tbody>
     </table>
     ";
-        // line 131
-        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 131), "username", [], "any", true, true, false, 131)) {
-            // line 132
+        // line 133
+        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 133), "username", [], "any", true, true, false, 133)) {
+            // line 134
             echo "        ";
-            if ((isset($context["owner"]) || array_key_exists("owner", $context) ? $context["owner"] : (function () { throw new RuntimeError('Variable "owner" does not exist.', 132, $this->source); })())) {
+            if ((isset($context["owner"]) || array_key_exists("owner", $context) ? $context["owner"] : (function () { throw new RuntimeError('Variable "owner" does not exist.', 134, $this->source); })())) {
                 echo "\t
 \t\t\t<div><a href=\"";
-                // line 133
+                // line 135
                 echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_new");
                 echo "\">Create new</a></div>
 \t\t";
             } else {
-                // line 135
+                // line 137
                 echo "\t\t\t<div><a href=\"";
                 echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("owner_new");
                 echo "\">Create new</a></div>
 \t    ";
             }
-            // line 137
+            // line 139
             echo "    <a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_likes");
             echo "\">See the rooms you liked</a>
@@ -394,7 +395,7 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
 
     public function getDebugInfo()
     {
-        return array (  372 => 137,  366 => 135,  361 => 133,  356 => 132,  354 => 131,  350 => 129,  347 => 128,  338 => 124,  329 => 119,  324 => 117,  319 => 116,  313 => 114,  307 => 112,  304 => 111,  302 => 110,  297 => 108,  292 => 106,  288 => 105,  284 => 104,  280 => 103,  276 => 102,  272 => 101,  268 => 100,  265 => 99,  259 => 98,  257 => 97,  234 => 76,  223 => 74,  219 => 73,  203 => 59,  191 => 52,  188 => 51,  179 => 47,  170 => 42,  165 => 40,  161 => 39,  156 => 37,  151 => 35,  147 => 34,  143 => 33,  139 => 32,  135 => 31,  131 => 30,  127 => 29,  124 => 28,  118 => 27,  115 => 26,  113 => 25,  95 => 9,  93 => 8,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  373 => 139,  367 => 137,  362 => 135,  357 => 134,  355 => 133,  351 => 131,  348 => 130,  339 => 126,  330 => 121,  324 => 118,  319 => 117,  313 => 114,  307 => 112,  304 => 111,  302 => 110,  297 => 108,  292 => 106,  288 => 105,  284 => 104,  280 => 103,  276 => 102,  272 => 101,  268 => 100,  265 => 99,  259 => 98,  257 => 97,  234 => 76,  223 => 74,  219 => 73,  203 => 59,  191 => 52,  188 => 51,  179 => 47,  170 => 42,  165 => 40,  161 => 39,  156 => 37,  151 => 35,  147 => 34,  143 => 33,  139 => 32,  135 => 31,  131 => 30,  127 => 29,  124 => 28,  118 => 27,  115 => 26,  113 => 25,  95 => 9,  93 => 8,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -514,8 +515,10 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
                         {% else %}
                 \t\t<a href=\"/room/{{room.id}}/like\"> Like </a>
                         {% endif %}
+{#                         {% if room.owner.user is same as likes %}#}
                     \t<a href=\"{{ path('room_edit', {'id': room.id}) }}\">edit</a>
                     <a href=\"{{ path('reservation_new', {'id': room.id}) }}\">Book</a>
+                    
                     {% endif %}
                     
                     
