@@ -5280,3 +5280,10 @@ a5c281,127.0.0.1,POST,http://localhost:8000/login,1574261390,,302
 6b08c6,127.0.0.1,GET,http://localhost:8000/room/,1574261392,,200
 e64d39,127.0.0.1,GET,http://localhost:8000/room/style.css,1574261392,d3afbc,200
 d3afbc,127.0.0.1,GET,http://localhost:8000/room/style.css,1574261392,,404
+5316e5,127.0.0.1,GET,http://localhost:8000/room/,1574361938,f02274,200
+f02274,127.0.0.1,GET,http://localhost:8000/room/,1574361938,,500
+b429fd,127.0.0.1,GET,http://localhost:8000/home/,1574361946,,200
+84af73,127.0.0.1,GET,http://localhost:8000/home/style.css,1574361946,e08416,200
+e08416,127.0.0.1,GET,http://localhost:8000/home/style.css,1574361946,,404
+805a2d,127.0.0.1,GET,http://localhost:8000/room/,1574361948,235931,200
+235931,127.0.0.1,GET,http://localhost:8000/room/,1574361948,,500
