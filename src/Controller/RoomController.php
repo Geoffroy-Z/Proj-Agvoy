@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Region;
 use App\Entity\Room;
+use App\Entity\Owner;
 use App\Form\RoomType;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
 use App\Entity\Unavailibility;
+use App\Entity\Comment;
 
 
 /**
@@ -25,6 +27,16 @@ class RoomController extends AbstractController
     public function index(RoomRepository $roomRepository): Response
     {
         $this->get('session')->set('ViewingLikes', False);
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        if(gettype($user)!="string" && $user->getOwner()==NULL){
+                $owner=FALSE;
+            }
+            else
+            {
+                $owner=TRUE;                        
+            }
+        
         $em = $this->getDoctrine()->getManager();
         $regions = $em->getRepository(Region::class)->findall();
         $availableRooms= $roomRepository->findAll();
@@ -33,7 +45,6 @@ class RoomController extends AbstractController
         if(isset($_GET['region'])){
             foreach($availableRooms as $room){
                 if($room->getRegion()->getId()!=$_GET['region']){
-                    dump($room->getRegion());
                     $availableRooms=\array_diff($availableRooms, [$room]);
                 }
             }
@@ -52,7 +63,7 @@ class RoomController extends AbstractController
             {
                 $this->get('session')->getFlashBag()->add('error', 'Recherche impossible, date de départ et d\'arrivée incohérentes');
                 return $this->render('room/index.html.twig', [
-                    'rooms' => $roomRepository->findAll(), 'likes'=> $this->get('session')->get('likes'),'regions' => $regions,
+                    'rooms' => $roomRepository->findAll(), 'likes'=> $this->get('session')->get('likes'),'regions' => $regions,'owner'=>$owner, 'user'=>$user,
                 ]);
                 
             }
@@ -61,7 +72,9 @@ class RoomController extends AbstractController
             $unavailibilities = $em->getRepository(Unavailibility::class)->findAll();
             
              foreach($unavailibilities as $unavailibility){
-                
+                dump($startDate);
+                dump($endDate);
+                dump($unavailibility);
                 if($startDate < $unavailibility->getEnding() &&
                     $endDate > $unavailibility->getStart())
                 {
@@ -70,25 +83,19 @@ class RoomController extends AbstractController
                     
                 }
             } 
-            dump($availableRooms);
             return $this->render('room/index.html.twig', [
-                'rooms' => $availableRooms, 'likes'=> $this->get('session')->get('likes'), 'regions' => $regions,
+                'rooms' => $availableRooms, 'likes'=> $this->get('session')->get('likes'), 'regions' => $regions, 'owner'=>$owner,'user'=>$user,
             ]);
         }
         else
         {
         
         return $this->render('room/index.html.twig', [
-            'rooms' => $availableRooms, 'likes'=> $this->get('session')->get('likes'),'regions' => $regions,
+            'rooms' => $availableRooms, 'likes'=> $this->get('session')->get('likes'),'regions' => $regions,'owner'=>$owner,'user'=>$user,
         ]);
         }
     }
     
-    
-    public function filter()
-    {
-
-    }
 
     /**
      * @Route("/new", name="room_new", methods={"GET","POST"})
@@ -112,6 +119,7 @@ class RoomController extends AbstractController
         return $this->render('room/new.html.twig', [
             'room' => $room,
             'form' => $form->createView(),
+            
         ]);
     }
 
@@ -137,8 +145,11 @@ class RoomController extends AbstractController
      */
     public function show(Room $room): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $comments = $em->getRepository(Comment::class)->findBy(array('room' => $room->getId()));
+        
         return $this->render('room/show.html.twig', [
-            'room' => $room,
+            'room' => $room, 'comments'=> $comments , 'date'=>date('Y-m-d H:i:s',date_default_timezone_set('Europe/Berlin')),
         ]);
     }
 

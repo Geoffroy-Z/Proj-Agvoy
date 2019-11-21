@@ -6,6 +6,8 @@
     <h1>Create new Reservation</h1>
 
     {{ include('reservation/_form.html.twig') }}
-
+    <input type='hidden' name='email' value={{ app.user.username }}>
+    
     <a href="{{ path('reservation_index') }}">back to list</a>
+    
 {% endblock %}

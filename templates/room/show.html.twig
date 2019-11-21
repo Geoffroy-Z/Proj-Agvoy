@@ -39,8 +39,30 @@
     </table>
 
     <a href="{{ path('room_index') }}">back to list</a>
-
+	<br>
+	{% if is_granted('ROLE_OWNER') or is_granted('ROLE_ADMIN') %}
     <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
-
-    {{ include('room/_delete_form.html.twig') }}
+    {% endif %}
+	
+	{% if app.user.username is defined %}
+    <form action="{{ path('comment') }}">
+    <input type='hidden' name='uid' value={{ app.user.username }}>
+    <input type='hidden' name='date' value='{{ date }}'>
+    <input type='hidden' name='room' value={{ room }}>
+    
+    <textarea name='message'></textarea>
+    <br><button type='submit' name='submit'>Comment</button>    
+    </form>
+    {% endif %}
+    
+    {% for comment in comments %}
+    <div class="boxed">
+    By {{ comment.user.email }} at {{ comment.date|date("Y-m-d H:i:s") }}
+    <br>
+    {{ comment.message }}
+    </div>
+    <br>
+    {% endfor %}
+    
+    
 {% endblock %}

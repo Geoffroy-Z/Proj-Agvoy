@@ -3,6 +3,61 @@
 {% block title %}Room index{% endblock %}
 
 {% block main %}
+
+{% if app.user %}
+{% if user.owner is not null %}
+    <h1>Your rooms</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Summary</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Superficy</th>
+                <th>Price</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if is_granted('ROLE_OWNER') %}
+        {% if user.owner.room is not null %}
+        {% for room in user.owner.room %}
+            <tr>
+                <td>{{ room.id }}</td>
+                <td>{{ room.summary }}</td>
+                <td>{{ room.description }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.superficy }}</td>
+                <td>{{ room.price }}</td>
+                <td>{{ room.address }}</td>
+                <td>
+                    <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
+                    
+                    {% if app.user.username is defined %}                                                
+                    <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
+                    {% endif %}
+                    
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        {% endif %}          
+        </tbody>
+    </table>
+    
+
+
+{% endif %}
+{% endif %}          
+
     <h1>Room index</h1>
     <div>Filtrer les annonces:
     
@@ -12,7 +67,7 @@
 	<input type="date" name="startDate" value= >
   </label>
   <label>Arrivée
-	<input type="date" name="endDate value= ">
+	<input type="date" name="endDate" value=>
 	</label>
 <select name="region" value= >
         {% for region in regions %}
@@ -50,14 +105,19 @@
                 <td>{{ room.price }}</td>
                 <td>{{ room.address }}</td>
                 <td>
-                {% if room.id in likes %}
-                    <a href="/room/{{room.id}}/like"> Dislike </a>
-                {% else %}
-                	<a href="/room/{{room.id}}/like"> Like </a>
-                {% endif %}
                     <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
-                    <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
+                    
+                    {% if app.user.username is defined %}
+                        {% if room.id in likes %}
+                    	<a href="/room/{{room.id}}/like"> Dislike </a>
+                        {% else %}
+                		<a href="/room/{{room.id}}/like"> Like </a>
+                        {% endif %}
+                        {% if room.owner.user is same as likes %}
+                        
+                    	<a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
                     <a href="{{ path('reservation_new', {'id': room.id}) }}">Book</a>
+                    {% endif %}
                     
                     
                 </td>
@@ -70,7 +130,12 @@
         {% endif %}
         </tbody>
     </table>
-
-    <div><a href="{{ path('room_new') }}">Create new</a></div>
+    {% if app.user.username is defined %}
+        {% if owner %}	
+			<div><a href="{{ path('room_new') }}">Create new</a></div>
+		{% else %}
+			<div><a href="{{ path('owner_new') }}">Create new</a></div>
+	    {% endif %}
     <a href="{{ path('room_likes') }}">See the rooms you liked</a>
+    {% endif %}
 {% endblock %}

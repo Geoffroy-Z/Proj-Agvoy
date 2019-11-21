@@ -43,6 +43,11 @@ class Owner
      */
     private $room;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function __construct()
     {
         $this->room = new ArrayCollection();
@@ -137,5 +142,17 @@ class Owner
         $familyname=$this->getFamilyName();
         $fullname= $firstname.' '.$familyname;
         return (string) $fullname;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

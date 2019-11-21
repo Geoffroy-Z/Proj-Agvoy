@@ -320,33 +320,41 @@
           <parameter key="regions" type="collection">
             <parameter key="label">Regions</parameter>
             <parameter key="route">admin_region_index</parameter>
+            <parameter key="roles" type="collection">
+              <parameter>ROLE_ADMIN</parameter>
+            </parameter>
             <parameter key="is_divider">false</parameter>
             <parameter key="route_parameters" type="collection"/>
-            <parameter key="roles" type="collection"/>
             <parameter key="items" type="collection"/>
           </parameter>
           <parameter key="owners" type="collection">
             <parameter key="label">Owners</parameter>
-            <parameter key="route">owner</parameter>
+            <parameter key="route">owner_index</parameter>
+            <parameter key="roles" type="collection">
+              <parameter>ROLE_ADMIN</parameter>
+            </parameter>
             <parameter key="is_divider">false</parameter>
             <parameter key="route_parameters" type="collection"/>
-            <parameter key="roles" type="collection"/>
             <parameter key="items" type="collection"/>
           </parameter>
           <parameter key="unavailibitlities" type="collection">
             <parameter key="label">Unavailibilities</parameter>
             <parameter key="route">unavailibilities_index</parameter>
+            <parameter key="roles" type="collection">
+              <parameter>ROLE_ADMIN</parameter>
+            </parameter>
             <parameter key="is_divider">false</parameter>
             <parameter key="route_parameters" type="collection"/>
-            <parameter key="roles" type="collection"/>
             <parameter key="items" type="collection"/>
           </parameter>
           <parameter key="reservation" type="collection">
             <parameter key="label">Reservations</parameter>
             <parameter key="route">reservation_index</parameter>
+            <parameter key="roles" type="collection">
+              <parameter>ROLE_USER</parameter>
+            </parameter>
             <parameter key="is_divider">false</parameter>
             <parameter key="route_parameters" type="collection"/>
-            <parameter key="roles" type="collection"/>
             <parameter key="items" type="collection"/>
           </parameter>
         </parameter>
@@ -502,6 +510,13 @@
         <argument type="service" id=".service_locator.CDOTD6..App\Controller\BackofficeRegionController"/>
       </call>
     </service>
+    <service id="App\Controller\CommentController" class="App\Controller\CommentController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\CommentController"/>
+      </call>
+    </service>
     <service id="App\Controller\FrontOfficeController" class="App\Controller\FrontOfficeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -558,6 +573,12 @@
       <tag name="doctrine.fixture.orm"/>
       <argument type="service" id="security.user_password_encoder.generic"/>
     </service>
+    <service id="App\Form\Owner1Type" class="App\Form\Owner1Type" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\OwnerType" class="App\Form\OwnerType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\RegionType" class="App\Form\RegionType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -574,6 +595,10 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -938,6 +963,8 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\Owner1Type</argument>
+        <argument>App\Form\OwnerType</argument>
         <argument>App\Form\RegionType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\ReservationType</argument>
@@ -1208,7 +1235,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.WS8aYwI"/>
+      <argument type="service" id=".service_locator.mjrsdXI"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -2339,14 +2366,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -3153,7 +3172,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.jpGOAB_"/>
+      <argument type="service" id=".service_locator.uz44j_T"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -3579,6 +3598,13 @@
         <argument type="service" id=".security.request_matcher.eKXDm4f"/>
         <argument type="collection">
           <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.5dJADCx"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -4017,6 +4043,9 @@
     </service>
     <service id=".security.request_matcher.eKXDm4f" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/login$</argument>
+    </service>
+    <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/admin</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
@@ -4836,6 +4865,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BackofficeRegionController" class="App\Controller\BackofficeRegionController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BackofficeRegionController" class="App\Controller\BackofficeRegionController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\BackofficeRegionController" class="App\Controller\BackofficeRegionController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CommentController" class="App\Controller\CommentController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FrontOfficeController" class="App\Controller\FrontOfficeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FrontOfficeController" class="App\Controller\FrontOfficeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\FrontOfficeController" class="App\Controller\FrontOfficeController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4861,6 +4893,10 @@
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Owner1Type" class="App\Form\Owner1Type" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\Owner1Type" class="App\Form\Owner1Type" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\OwnerType" class="App\Form\OwnerType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\OwnerType" class="App\Form\OwnerType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegionType" class="App\Form\RegionType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegionType" class="App\Form\RegionType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
@@ -4873,6 +4909,8 @@
     <service id=".abstract.instanceof.App\Form\UnavailibilityType" class="App\Form\UnavailibilityType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CommentRepository" class="App\Repository\CommentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\OwnerRepository" class="App\Repository\OwnerRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\OwnerRepository" class="App\Repository\OwnerRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\RegionRepository" class="App\Repository\RegionRepository" autowire="true" abstract="true"/>
@@ -5059,6 +5097,18 @@
         <argument key="region" type="service" id=".errored..service_locator.vIHt.Cx.App\Entity\Region"/>
       </argument>
     </service>
+    <service id=".service_locator.KJS4slK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="ownerRepository" type="service" id="App\Repository\OwnerRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.1sVfNg4" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="owner" type="service" id=".errored..service_locator.1sVfNg4.App\Entity\Owner"/>
+      </argument>
+    </service>
     <service id=".service_locator.wyrb61." class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5109,7 +5159,7 @@
         <argument key="unavailibility" type="service" id=".errored..service_locator.00Wei2p.App\Entity\Unavailibility"/>
       </argument>
     </service>
-    <service id=".service_locator.7X9UxBM" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.B1UZuxt" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\BackofficeRegionController::delete" type="service" id=".service_locator.vIHt.Cx"/>
@@ -5117,6 +5167,10 @@
         <argument key="App\Controller\BackofficeRegionController::index" type="service" id=".service_locator.BPeAJFx"/>
         <argument key="App\Controller\BackofficeRegionController::listRegionRooms" type="service" id=".service_locator.vIHt.Cx"/>
         <argument key="App\Controller\BackofficeRegionController::show" type="service" id=".service_locator.vIHt.Cx"/>
+        <argument key="App\Controller\OwnerController::delete" type="service" id=".service_locator.1sVfNg4"/>
+        <argument key="App\Controller\OwnerController::edit" type="service" id=".service_locator.1sVfNg4"/>
+        <argument key="App\Controller\OwnerController::index" type="service" id=".service_locator.KJS4slK"/>
+        <argument key="App\Controller\OwnerController::show" type="service" id=".service_locator.1sVfNg4"/>
         <argument key="App\Controller\RegistrationController::register" type="service" id=".service_locator.wyrb61."/>
         <argument key="App\Controller\ReservationController::confirm" type="service" id=".service_locator.eH1R0Zw"/>
         <argument key="App\Controller\ReservationController::delete" type="service" id=".service_locator.eH1R0Zw"/>
@@ -5137,6 +5191,10 @@
         <argument key="App\Controller\BackofficeRegionController:index" type="service" id=".service_locator.BPeAJFx"/>
         <argument key="App\Controller\BackofficeRegionController:listRegionRooms" type="service" id=".service_locator.vIHt.Cx"/>
         <argument key="App\Controller\BackofficeRegionController:show" type="service" id=".service_locator.vIHt.Cx"/>
+        <argument key="App\Controller\OwnerController:delete" type="service" id=".service_locator.1sVfNg4"/>
+        <argument key="App\Controller\OwnerController:edit" type="service" id=".service_locator.1sVfNg4"/>
+        <argument key="App\Controller\OwnerController:index" type="service" id=".service_locator.KJS4slK"/>
+        <argument key="App\Controller\OwnerController:show" type="service" id=".service_locator.1sVfNg4"/>
         <argument key="App\Controller\RegistrationController:register" type="service" id=".service_locator.wyrb61."/>
         <argument key="App\Controller\ReservationController:confirm" type="service" id=".service_locator.eH1R0Zw"/>
         <argument key="App\Controller\ReservationController:delete" type="service" id=".service_locator.eH1R0Zw"/>
@@ -5213,9 +5271,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.WS8aYwI" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.mjrsdXI" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\Owner1Type" type="service" id="App\Form\Owner1Type"/>
+        <argument key="App\Form\OwnerType" type="service" id="App\Form\OwnerType"/>
         <argument key="App\Form\RegionType" type="service" id="App\Form\RegionType"/>
         <argument key="App\Form\RegistrationFormType" type="service" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\ReservationType" type="service" id="App\Form\ReservationType"/>
@@ -5233,10 +5293,11 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.jpGOAB_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.uz44j_T" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\ClientRepository" type="service" id="App\Repository\ClientRepository"/>
+        <argument key="App\Repository\CommentRepository" type="service" id="App\Repository\CommentRepository"/>
         <argument key="App\Repository\OwnerRepository" type="service" id="App\Repository\OwnerRepository"/>
         <argument key="App\Repository\RegionRepository" type="service" id="App\Repository\RegionRepository"/>
         <argument key="App\Repository\ReservationRepository" type="service" id="App\Repository\ReservationRepository"/>
@@ -5447,6 +5508,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CDOTD6." method="withContext"/>
     </service>
+    <service id=".service_locator.CDOTD6..App\Controller\CommentController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\CommentController"/>
+      <argument>App\Controller\CommentController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
     <service id=".service_locator.CDOTD6..App\Controller\FrontOfficeController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\FrontOfficeController"/>
       <argument>App\Controller\FrontOfficeController</argument>
@@ -5582,12 +5649,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.7X9UxBM"/>
+      <argument type="service" id=".service_locator.B1UZuxt"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.7X9UxBM"/>
+      <argument type="service" id=".service_locator.B1UZuxt"/>
     </service>
     <service id=".service_locator.UwRI0uT" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -5612,6 +5679,7 @@
       </argument>
     </service>
     <service id=".errored..service_locator.vIHt.Cx.App\Entity\Region" class="App\Entity\Region"/>
+    <service id=".errored..service_locator.1sVfNg4.App\Entity\Owner" class="App\Entity\Owner"/>
     <service id=".errored..service_locator.eH1R0Zw.App\Entity\Reservation" class="App\Entity\Reservation"/>
     <service id=".errored..service_locator.BkOHXLl.App\Entity\Room" class="App\Entity\Room"/>
     <service id=".errored..service_locator.00Wei2p.App\Entity\Unavailibility" class="App\Entity\Unavailibility"/>
@@ -5967,7 +6035,7 @@
     <service id="Twig\Environment" alias="twig" public="false"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.7X9UxBM"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.B1UZuxt"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

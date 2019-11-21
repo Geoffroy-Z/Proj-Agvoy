@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Region;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class RoomType extends AbstractType
 {

@@ -145,16 +145,73 @@ class __TwigTemplate_819db3315d8c582af614f660e15dbc5cd20d4698477840dd5356118b975
         // line 41
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_index");
         echo "\">back to list</a>
-
-    <a href=\"";
+\t<br>
+\t";
         // line 43
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["room"]) || array_key_exists("room", $context) ? $context["room"] : (function () { throw new RuntimeError('Variable "room" does not exist.', 43, $this->source); })()), "id", [], "any", false, false, false, 43)]), "html", null, true);
-        echo "\">edit</a>
-
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_OWNER") || $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN"))) {
+            // line 44
+            echo "    <a href=\"";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["room"]) || array_key_exists("room", $context) ? $context["room"] : (function () { throw new RuntimeError('Variable "room" does not exist.', 44, $this->source); })()), "id", [], "any", false, false, false, 44)]), "html", null, true);
+            echo "\">edit</a>
     ";
-        // line 45
-        echo twig_include($this->env, $context, "room/_delete_form.html.twig");
-        echo "
+        }
+        // line 46
+        echo "\t
+\t";
+        // line 47
+        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 47), "username", [], "any", true, true, false, 47)) {
+            // line 48
+            echo "    <form action=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("comment");
+            echo "\">
+    <input type='hidden' name='uid' value=";
+            // line 49
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 49, $this->source); })()), "user", [], "any", false, false, false, 49), "username", [], "any", false, false, false, 49), "html", null, true);
+            echo ">
+    <input type='hidden' name='date' value='";
+            // line 50
+            echo twig_escape_filter($this->env, (isset($context["date"]) || array_key_exists("date", $context) ? $context["date"] : (function () { throw new RuntimeError('Variable "date" does not exist.', 50, $this->source); })()), "html", null, true);
+            echo "'>
+    <input type='hidden' name='room' value=";
+            // line 51
+            echo twig_escape_filter($this->env, (isset($context["room"]) || array_key_exists("room", $context) ? $context["room"] : (function () { throw new RuntimeError('Variable "room" does not exist.', 51, $this->source); })()), "html", null, true);
+            echo ">
+    
+    <textarea name='message'></textarea>
+    <br><button type='submit' name='submit'>Comment</button>    
+    </form>
+    ";
+        }
+        // line 57
+        echo "    
+    ";
+        // line 58
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["comments"]) || array_key_exists("comments", $context) ? $context["comments"] : (function () { throw new RuntimeError('Variable "comments" does not exist.', 58, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
+            // line 59
+            echo "    <div class=\"boxed\">
+    By ";
+            // line 60
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["comment"], "user", [], "any", false, false, false, 60), "email", [], "any", false, false, false, 60), "html", null, true);
+            echo " at ";
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "date", [], "any", false, false, false, 60), "Y-m-d H:i:s"), "html", null, true);
+            echo "
+    <br>
+    ";
+            // line 62
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["comment"], "message", [], "any", false, false, false, 62), "html", null, true);
+            echo "
+    </div>
+    <br>
+    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['comment'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 66
+        echo "    
+    
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -176,7 +233,7 @@ class __TwigTemplate_819db3315d8c582af614f660e15dbc5cd20d4698477840dd5356118b975
 
     public function getDebugInfo()
     {
-        return array (  156 => 45,  151 => 43,  146 => 41,  138 => 36,  131 => 32,  124 => 28,  117 => 24,  110 => 20,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  213 => 66,  203 => 62,  196 => 60,  193 => 59,  189 => 58,  186 => 57,  177 => 51,  173 => 50,  169 => 49,  164 => 48,  162 => 47,  159 => 46,  153 => 44,  151 => 43,  146 => 41,  138 => 36,  131 => 32,  124 => 28,  117 => 24,  110 => 20,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -222,10 +279,32 @@ class __TwigTemplate_819db3315d8c582af614f660e15dbc5cd20d4698477840dd5356118b975
     </table>
 
     <a href=\"{{ path('room_index') }}\">back to list</a>
-
+\t<br>
+\t{% if is_granted('ROLE_OWNER') or is_granted('ROLE_ADMIN') %}
     <a href=\"{{ path('room_edit', {'id': room.id}) }}\">edit</a>
-
-    {{ include('room/_delete_form.html.twig') }}
+    {% endif %}
+\t
+\t{% if app.user.username is defined %}
+    <form action=\"{{ path('comment') }}\">
+    <input type='hidden' name='uid' value={{ app.user.username }}>
+    <input type='hidden' name='date' value='{{ date }}'>
+    <input type='hidden' name='room' value={{ room }}>
+    
+    <textarea name='message'></textarea>
+    <br><button type='submit' name='submit'>Comment</button>    
+    </form>
+    {% endif %}
+    
+    {% for comment in comments %}
+    <div class=\"boxed\">
+    By {{ comment.user.email }} at {{ comment.date|date(\"Y-m-d H:i:s\") }}
+    <br>
+    {{ comment.message }}
+    </div>
+    <br>
+    {% endfor %}
+    
+    
 {% endblock %}
 ", "room/show.html.twig", "/home/geoffroy/Documents/CSC4101/proj-agvoy/agvoy-app-03/templates/room/show.html.twig");
     }

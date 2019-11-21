@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,58 +19,73 @@ class Client
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="client")
      */
-    private $firstname;
+        
+    private $reservation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $familyName;
+    private $user;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $phoneNumber;
+
+    public function __construct()
+    {
+        $this->reservation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFirstname(): ?string
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservation(): Collection
     {
-        return $this->firstname;
+        return $this->reservation;
     }
 
-    public function setFirstname(string $firstname): self
+    public function addReservation(Reservation $reservation): self
     {
-        $this->firstname = $firstname;
+        if (!$this->reservation->contains($reservation)) {
+            $this->reservation[] = $reservation;
+            $reservation->setClient($this);
+        }
 
         return $this;
     }
 
-    public function getFamilyName(): ?string
+    public function removeReservation(Reservation $reservation): self
     {
-        return $this->familyName;
+        if ($this->reservation->contains($reservation)) {
+            $this->reservation->removeElement($reservation);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getClient() === $this) {
+                $reservation->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+    
+    public function __toString() {
+        return (string) $this->getId();
     }
 
-    public function setFamilyName(string $familyName): self
+    public function getUser(): ?User
     {
-        $this->familyName = $familyName;
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
-    {
-        return $this->phoneNumber;
-    }
-
-    public function setPhoneNumber(?int $phoneNumber): self
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
 }

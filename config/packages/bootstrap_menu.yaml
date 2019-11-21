@@ -8,15 +8,20 @@ bootstrap_menu:
         regions:
           label: 'Regions'
           route: 'admin_region_index'
+          roles: [ 'ROLE_ADMIN' ]
         owners:
           label: 'Owners'
-          route: 'owner'
+          route: 'owner_index'
+          roles: [ 'ROLE_ADMIN' ]
         unavailibitlities:
           label: 'Unavailibilities'
           route: 'unavailibilities_index'
+          roles: [ 'ROLE_ADMIN' ]
         reservation :
           label: 'Reservations'
           route: 'reservation_index'
+          roles: [ 'ROLE_USER' ]
+          
          
     anonymousaccount:
       items:

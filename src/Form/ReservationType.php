@@ -15,7 +15,6 @@ class ReservationType extends AbstractType
             ->add('arrival')
             ->add('departure')
             ->add('additional_info')
-            ->add('room')
         ;
     }
 

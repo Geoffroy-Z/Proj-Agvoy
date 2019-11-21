@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Room</th>
+                <th>Client</th>
                 <th>Arrival</th>
                 <th>Departure</th>
                 <th>Confirmed</th>
@@ -22,6 +23,7 @@
             <tr>
                 <td>{{ reservation.id }}</td>
                 <td>{{ reservation.room }}</td>
+                <td>{{ reservation.client.user.email }}</td>                
                 <td>{{ reservation.arrival ? reservation.arrival|date('Y-m-d') : '' }}</td>
                 <td>{{ reservation.departure ? reservation.departure|date('Y-m-d') : '' }}</td>
                 <td>{{ reservation.confirmed ? 'Yes' : 'No' }}</td>

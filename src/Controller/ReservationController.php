@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\User;
+use App\Entity\Client;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Room;
 
 /**
  * @Route("/reservation")
@@ -33,13 +36,11 @@ class ReservationController extends AbstractController
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
+        $entityManager = $this->getDoctrine()->getManager();
+        $room= $entityManager->getRepository(Room::class)->findOneBy(array('id'=> (int)$_GET['id']));
+        $reservation->setRoom($room);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if(null === $reservation->getRoom())
-            {
-                $this->get('session')->getFlashBag()->add('error', 'Réservation impossible, veuillez préciser la chambre à réserver');
-                return $this->redirectToRoute('reservation_index');   
-            }
             $unavailibilities = $reservation->getRoom()->getUnavailibilities();
             $possible=True;
             foreach($unavailibilities as $unavailibility){
@@ -60,7 +61,18 @@ class ReservationController extends AbstractController
                 
             }
             if($possible==True){
-                $entityManager = $this->getDoctrine()->getManager();
+                $user = $this->container->get('security.token_storage')->getToken()->getUser();
+                if($user->getClient()==NULL){
+                    $client = new Client();
+                    $client->setUser($user);
+                    $client->addReservation($reservation);
+                    $user->setClient($client);
+                }
+                else{
+                    $client=$user->getClient();
+                }
+
+                $reservation->setClient($client);
                 $reservation->setConfirmed(False);
                 $reservation->setUpdatedUnavailibilities(False);
                 $entityManager->persist($reservation);

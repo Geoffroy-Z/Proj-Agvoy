@@ -85,7 +85,124 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "main"));
 
         // line 6
-        echo "    <h1>Room index</h1>
+        echo "
+";
+        // line 7
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 7, $this->source); })()), "user", [], "any", false, false, false, 7)) {
+            // line 8
+            if ( !(null === twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 8, $this->source); })()), "owner", [], "any", false, false, false, 8))) {
+                // line 9
+                echo "    <h1>Your rooms</h1>
+    
+    <table class=\"table\">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Summary</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Superficy</th>
+                <th>Price</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        ";
+                // line 25
+                if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_OWNER")) {
+                    // line 26
+                    echo "        ";
+                    if ( !(null === twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 26, $this->source); })()), "owner", [], "any", false, false, false, 26), "room", [], "any", false, false, false, 26))) {
+                        // line 27
+                        echo "        ";
+                        $context['_parent'] = $context;
+                        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 27, $this->source); })()), "owner", [], "any", false, false, false, 27), "room", [], "any", false, false, false, 27));
+                        $context['_iterated'] = false;
+                        foreach ($context['_seq'] as $context["_key"] => $context["room"]) {
+                            // line 28
+                            echo "            <tr>
+                <td>";
+                            // line 29
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 29), "html", null, true);
+                            echo "</td>
+                <td>";
+                            // line 30
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "summary", [], "any", false, false, false, 30), "html", null, true);
+                            echo "</td>
+                <td>";
+                            // line 31
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "description", [], "any", false, false, false, 31), "html", null, true);
+                            echo "</td>
+                <td>";
+                            // line 32
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "capacity", [], "any", false, false, false, 32), "html", null, true);
+                            echo "</td>
+                <td>";
+                            // line 33
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "superficy", [], "any", false, false, false, 33), "html", null, true);
+                            echo "</td>
+                <td>";
+                            // line 34
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "price", [], "any", false, false, false, 34), "html", null, true);
+                            echo "</td>
+                <td>";
+                            // line 35
+                            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "address", [], "any", false, false, false, 35), "html", null, true);
+                            echo "</td>
+                <td>
+                    <a href=\"";
+                            // line 37
+                            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_show", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 37)]), "html", null, true);
+                            echo "\">show</a>
+                    
+                    ";
+                            // line 39
+                            if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 39), "username", [], "any", true, true, false, 39)) {
+                                echo "                                                
+                    <a href=\"";
+                                // line 40
+                                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 40)]), "html", null, true);
+                                echo "\">edit</a>
+                    ";
+                            }
+                            // line 42
+                            echo "                    
+                    
+                </td>
+            </tr>
+        ";
+                            $context['_iterated'] = true;
+                        }
+                        if (!$context['_iterated']) {
+                            // line 47
+                            echo "            <tr>
+                <td colspan=\"8\">no records found</td>
+            </tr>
+        ";
+                        }
+                        $_parent = $context['_parent'];
+                        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['room'], $context['_parent'], $context['loop']);
+                        $context = array_intersect_key($context, $_parent) + $_parent;
+                        // line 51
+                        echo "        ";
+                    }
+                    // line 52
+                    echo "        ";
+                }
+                echo "          
+        </tbody>
+    </table>
+    
+
+
+";
+            }
+        }
+        // line 59
+        echo "          
+
+    <h1>Room index</h1>
     <div>Filtrer les annonces:
     
 <form style=\"text-align:center;\" method=\"get\" action=\"/room/\" method=\"post\">
@@ -94,26 +211,26 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
 \t<input type=\"date\" name=\"startDate\" value= >
   </label>
   <label>Arrivée
-\t<input type=\"date\" name=\"endDate value= \">
+\t<input type=\"date\" name=\"endDate\" value=>
 \t</label>
 <select name=\"region\" value= >
         ";
-        // line 18
+        // line 73
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["regions"]) || array_key_exists("regions", $context) ? $context["regions"] : (function () { throw new RuntimeError('Variable "regions" does not exist.', 18, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["regions"]) || array_key_exists("regions", $context) ? $context["regions"] : (function () { throw new RuntimeError('Variable "regions" does not exist.', 73, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["region"]) {
-            // line 19
+            // line 74
             echo "  <option value=";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["region"], "id", [], "any", false, false, false, 19), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["region"], "id", [], "any", false, false, false, 74), "html", null, true);
             echo ">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["region"], "name", [], "any", false, false, false, 19), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["region"], "name", [], "any", false, false, false, 74), "html", null, true);
             echo "</option>
           ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['region'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 21
+        // line 76
         echo "  
 </select>
 
@@ -136,73 +253,80 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
         </thead>
         <tbody>
         ";
-        // line 42
+        // line 97
         if ((isset($context["rooms"]) || array_key_exists("rooms", $context))) {
-            // line 43
+            // line 98
             echo "        ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["rooms"]) || array_key_exists("rooms", $context) ? $context["rooms"] : (function () { throw new RuntimeError('Variable "rooms" does not exist.', 43, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["rooms"]) || array_key_exists("rooms", $context) ? $context["rooms"] : (function () { throw new RuntimeError('Variable "rooms" does not exist.', 98, $this->source); })()));
             $context['_iterated'] = false;
             foreach ($context['_seq'] as $context["_key"] => $context["room"]) {
-                // line 44
+                // line 99
                 echo "            <tr>
                 <td>";
-                // line 45
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 45), "html", null, true);
+                // line 100
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 100), "html", null, true);
                 echo "</td>
                 <td>";
-                // line 46
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "summary", [], "any", false, false, false, 46), "html", null, true);
+                // line 101
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "summary", [], "any", false, false, false, 101), "html", null, true);
                 echo "</td>
                 <td>";
-                // line 47
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "description", [], "any", false, false, false, 47), "html", null, true);
+                // line 102
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "description", [], "any", false, false, false, 102), "html", null, true);
                 echo "</td>
                 <td>";
-                // line 48
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "capacity", [], "any", false, false, false, 48), "html", null, true);
+                // line 103
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "capacity", [], "any", false, false, false, 103), "html", null, true);
                 echo "</td>
                 <td>";
-                // line 49
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "superficy", [], "any", false, false, false, 49), "html", null, true);
+                // line 104
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "superficy", [], "any", false, false, false, 104), "html", null, true);
                 echo "</td>
                 <td>";
-                // line 50
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "price", [], "any", false, false, false, 50), "html", null, true);
+                // line 105
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "price", [], "any", false, false, false, 105), "html", null, true);
                 echo "</td>
                 <td>";
-                // line 51
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "address", [], "any", false, false, false, 51), "html", null, true);
+                // line 106
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "address", [], "any", false, false, false, 106), "html", null, true);
                 echo "</td>
                 <td>
-                ";
-                // line 53
-                if (twig_in_filter(twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 53), (isset($context["likes"]) || array_key_exists("likes", $context) ? $context["likes"] : (function () { throw new RuntimeError('Variable "likes" does not exist.', 53, $this->source); })()))) {
-                    // line 54
-                    echo "                    <a href=\"/room/";
-                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 54), "html", null, true);
-                    echo "/like\"> Dislike </a>
-                ";
-                } else {
-                    // line 56
-                    echo "                \t<a href=\"/room/";
-                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 56), "html", null, true);
-                    echo "/like\"> Like </a>
-                ";
-                }
-                // line 58
-                echo "                    <a href=\"";
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_show", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 58)]), "html", null, true);
+                    <a href=\"";
+                // line 108
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_show", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 108)]), "html", null, true);
                 echo "\">show</a>
-                    <a href=\"";
-                // line 59
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 59)]), "html", null, true);
-                echo "\">edit</a>
-                    <a href=\"";
-                // line 60
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_new", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 60)]), "html", null, true);
-                echo "\">Book</a>
                     
+                    ";
+                // line 110
+                if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 110), "username", [], "any", true, true, false, 110)) {
+                    // line 111
+                    echo "                        ";
+                    if (twig_in_filter(twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 111), (isset($context["likes"]) || array_key_exists("likes", $context) ? $context["likes"] : (function () { throw new RuntimeError('Variable "likes" does not exist.', 111, $this->source); })()))) {
+                        // line 112
+                        echo "                    \t<a href=\"/room/";
+                        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 112), "html", null, true);
+                        echo "/like\"> Dislike </a>
+                        ";
+                    } else {
+                        // line 114
+                        echo "                \t\t<a href=\"/room/";
+                        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 114), "html", null, true);
+                        echo "/like\"> Like </a>
+                        ";
+                    }
+                    // line 116
+                    echo "                    \t<a href=\"";
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 116)]), "html", null, true);
+                    echo "\">edit</a>
+                    <a href=\"";
+                    // line 117
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reservation_new", ["id" => twig_get_attribute($this->env, $this->source, $context["room"], "id", [], "any", false, false, false, 117)]), "html", null, true);
+                    echo "\">Book</a>
+                    ";
+                }
+                // line 119
+                echo "                    
                     
                 </td>
             </tr>
@@ -210,7 +334,7 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
                 $context['_iterated'] = true;
             }
             if (!$context['_iterated']) {
-                // line 66
+                // line 124
                 echo "            <tr>
                 <td colspan=\"8\">no records found</td>
             </tr>
@@ -219,22 +343,37 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['room'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 70
+            // line 128
             echo "        ";
         }
-        // line 71
+        // line 129
         echo "        </tbody>
     </table>
-
-    <div><a href=\"";
-        // line 74
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_new");
-        echo "\">Create new</a></div>
-    <a href=\"";
-        // line 75
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_likes");
-        echo "\">See the rooms you liked</a>
-";
+    ";
+        // line 131
+        if (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, ($context["app"] ?? null), "user", [], "any", false, true, false, 131), "username", [], "any", true, true, false, 131)) {
+            // line 132
+            echo "        ";
+            if ((isset($context["owner"]) || array_key_exists("owner", $context) ? $context["owner"] : (function () { throw new RuntimeError('Variable "owner" does not exist.', 132, $this->source); })())) {
+                echo "\t
+\t\t\t<div><a href=\"";
+                // line 133
+                echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_new");
+                echo "\">Create new</a></div>
+\t\t";
+            } else {
+                // line 135
+                echo "\t\t\t<div><a href=\"";
+                echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("owner_new");
+                echo "\">Create new</a></div>
+\t    ";
+            }
+            // line 137
+            echo "    <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("room_likes");
+            echo "\">See the rooms you liked</a>
+    ";
+        }
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -255,7 +394,7 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
 
     public function getDebugInfo()
     {
-        return array (  235 => 75,  231 => 74,  226 => 71,  223 => 70,  214 => 66,  203 => 60,  199 => 59,  194 => 58,  188 => 56,  182 => 54,  180 => 53,  175 => 51,  171 => 50,  167 => 49,  163 => 48,  159 => 47,  155 => 46,  151 => 45,  148 => 44,  142 => 43,  140 => 42,  117 => 21,  106 => 19,  102 => 18,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  372 => 137,  366 => 135,  361 => 133,  356 => 132,  354 => 131,  350 => 129,  347 => 128,  338 => 124,  329 => 119,  324 => 117,  319 => 116,  313 => 114,  307 => 112,  304 => 111,  302 => 110,  297 => 108,  292 => 106,  288 => 105,  284 => 104,  280 => 103,  276 => 102,  272 => 101,  268 => 100,  265 => 99,  259 => 98,  257 => 97,  234 => 76,  223 => 74,  219 => 73,  203 => 59,  191 => 52,  188 => 51,  179 => 47,  170 => 42,  165 => 40,  161 => 39,  156 => 37,  151 => 35,  147 => 34,  143 => 33,  139 => 32,  135 => 31,  131 => 30,  127 => 29,  124 => 28,  118 => 27,  115 => 26,  113 => 25,  95 => 9,  93 => 8,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -265,6 +404,61 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
 {% block title %}Room index{% endblock %}
 
 {% block main %}
+
+{% if app.user %}
+{% if user.owner is not null %}
+    <h1>Your rooms</h1>
+    
+    <table class=\"table\">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Summary</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Superficy</th>
+                <th>Price</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if is_granted('ROLE_OWNER') %}
+        {% if user.owner.room is not null %}
+        {% for room in user.owner.room %}
+            <tr>
+                <td>{{ room.id }}</td>
+                <td>{{ room.summary }}</td>
+                <td>{{ room.description }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.superficy }}</td>
+                <td>{{ room.price }}</td>
+                <td>{{ room.address }}</td>
+                <td>
+                    <a href=\"{{ path('room_show', {'id': room.id}) }}\">show</a>
+                    
+                    {% if app.user.username is defined %}                                                
+                    <a href=\"{{ path('room_edit', {'id': room.id}) }}\">edit</a>
+                    {% endif %}
+                    
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan=\"8\">no records found</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        {% endif %}          
+        </tbody>
+    </table>
+    
+
+
+{% endif %}
+{% endif %}          
+
     <h1>Room index</h1>
     <div>Filtrer les annonces:
     
@@ -274,7 +468,7 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
 \t<input type=\"date\" name=\"startDate\" value= >
   </label>
   <label>Arrivée
-\t<input type=\"date\" name=\"endDate value= \">
+\t<input type=\"date\" name=\"endDate\" value=>
 \t</label>
 <select name=\"region\" value= >
         {% for region in regions %}
@@ -312,14 +506,17 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
                 <td>{{ room.price }}</td>
                 <td>{{ room.address }}</td>
                 <td>
-                {% if room.id in likes %}
-                    <a href=\"/room/{{room.id}}/like\"> Dislike </a>
-                {% else %}
-                \t<a href=\"/room/{{room.id}}/like\"> Like </a>
-                {% endif %}
                     <a href=\"{{ path('room_show', {'id': room.id}) }}\">show</a>
-                    <a href=\"{{ path('room_edit', {'id': room.id}) }}\">edit</a>
+                    
+                    {% if app.user.username is defined %}
+                        {% if room.id in likes %}
+                    \t<a href=\"/room/{{room.id}}/like\"> Dislike </a>
+                        {% else %}
+                \t\t<a href=\"/room/{{room.id}}/like\"> Like </a>
+                        {% endif %}
+                    \t<a href=\"{{ path('room_edit', {'id': room.id}) }}\">edit</a>
                     <a href=\"{{ path('reservation_new', {'id': room.id}) }}\">Book</a>
+                    {% endif %}
                     
                     
                 </td>
@@ -332,9 +529,14 @@ class __TwigTemplate_40803591969b3b07efbc3d710a1d691783460d5effee8829eebd5f9fc49
         {% endif %}
         </tbody>
     </table>
-
-    <div><a href=\"{{ path('room_new') }}\">Create new</a></div>
+    {% if app.user.username is defined %}
+        {% if owner %}\t
+\t\t\t<div><a href=\"{{ path('room_new') }}\">Create new</a></div>
+\t\t{% else %}
+\t\t\t<div><a href=\"{{ path('owner_new') }}\">Create new</a></div>
+\t    {% endif %}
     <a href=\"{{ path('room_likes') }}\">See the rooms you liked</a>
+    {% endif %}
 {% endblock %}
 ", "room/index.html.twig", "/home/geoffroy/Documents/CSC4101/proj-agvoy/agvoy-app-03/templates/room/index.html.twig");
     }
