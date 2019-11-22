@@ -76,6 +76,11 @@ class Room
      */
     private $comments;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Paste", inversedBy="room", cascade={"persist", "remove"})
+     */
+    private $paste;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -302,6 +307,18 @@ class Room
                 $comment->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPaste(): ?Paste
+    {
+        return $this->paste;
+    }
+
+    public function setPaste(?Paste $paste): self
+    {
+        $this->paste = $paste;
 
         return $this;
     }

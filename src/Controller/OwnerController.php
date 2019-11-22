@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Owner;
-use App\Form\Owner1Type;
+use App\Form\OwnerType;
 use App\Repository\OwnerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class OwnerController extends AbstractController
     public function new(Request $request): Response
     {
         $owner = new Owner();
-        $form = $this->createForm(Owner1Type::class, $owner);
+        $form = $this->createForm(OwnerType::class, $owner);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

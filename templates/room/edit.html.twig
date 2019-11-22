@@ -1,15 +1,17 @@
 {% extends 'baselayout.html.twig' %}
 
-{% block title %}Edit unavailibility{% endblock %}
+{% block title %}Edit Room{% endblock %}
 
 {% block main %}
-    <h1>Edit unavailibility</h1>
+    <h1>Edit Room</h1>
 
     {{ include('room/_form.html.twig', {'button_label': 'Update'}) }}
     
-    <div><a href="{{ path('new_unavailibility') }}"> Add an unavailibility period</a></div>
+    <div><a href="{{ path('new_unavailibility', { 'id': room.id }) }}">Add an unavailibility period</a></div>
+    <div><a href="{{ path('paste_new', { 'id': room.id }) }}">Add an image</a></div>
+    
 
-    <a href="{{ path('unavailibilities_index') }}">back to list</a>
+    <a href="{{ path('room_index') }}">back to list</a>
 
     {{ include('room/_delete_form.html.twig') }}
 {% endblock %}

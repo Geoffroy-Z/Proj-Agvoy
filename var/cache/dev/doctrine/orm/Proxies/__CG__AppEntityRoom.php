@@ -64,10 +64,10 @@ class Room extends \App\Entity\Room implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'summary', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'capacity', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'superficy', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'address', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'owner', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'region', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'reservations', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'unavailibilities', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'comments'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'summary', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'capacity', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'superficy', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'address', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'owner', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'region', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'reservations', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'unavailibilities', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'comments', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'paste'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'summary', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'capacity', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'superficy', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'address', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'owner', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'region', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'reservations', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'unavailibilities', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'comments'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'summary', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'capacity', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'superficy', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'price', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'address', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'owner', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'region', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'reservations', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'unavailibilities', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'comments', '' . "\0" . 'App\\Entity\\Room' . "\0" . 'paste'];
     }
 
     /**
@@ -494,6 +494,28 @@ class Room extends \App\Entity\Room implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeComment', [$comment]);
 
         return parent::removeComment($comment);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPaste(): ?\App\Entity\Paste
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPaste', []);
+
+        return parent::getPaste();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPaste(?\App\Entity\Paste $paste): \App\Entity\Room
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPaste', [$paste]);
+
+        return parent::setPaste($paste);
     }
 
 }

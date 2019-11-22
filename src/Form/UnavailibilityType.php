@@ -14,7 +14,7 @@ class UnavailibilityType extends AbstractType
         $builder
             ->add('start')
             ->add('ending')
-            ->add('room')
+//             ->add('room')
         ;
     }
 

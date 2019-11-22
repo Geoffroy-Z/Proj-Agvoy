@@ -31,6 +31,10 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'V' => 
+        array (
+            'Vich\\UploaderBundle\\' => 20,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -53,6 +57,7 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Validator\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Templating\\' => 29,
             'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Serializer\\' => 29,
             'Symfony\\Component\\Security\\Http\\' => 32,
@@ -109,9 +114,15 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
             'PhpParser\\' => 10,
             'PackageVersions\\' => 16,
         ),
+        'N' => 
+        array (
+            'Nelmio\\CorsBundle\\' => 18,
+            'Negotiation\\' => 12,
+        ),
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Metadata\\' => 9,
         ),
         'F' => 
         array (
@@ -148,6 +159,7 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
         array (
             'App\\Tests\\' => 10,
             'App\\' => 4,
+            'ApiPlatform\\Core\\' => 17,
         ),
     );
 
@@ -169,6 +181,10 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Vich\\UploaderBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vich/uploader-bundle',
         ),
         'Twig\\' => 
         array (
@@ -237,6 +253,10 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\Templating\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/templating',
         ),
         'Symfony\\Component\\Stopwatch\\' => 
         array (
@@ -446,9 +466,21 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
         array (
             0 => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions',
         ),
+        'Nelmio\\CorsBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nelmio/cors-bundle',
+        ),
+        'Negotiation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/willdurand/negotiation/src/Negotiation',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Metadata\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jms/metadata/src',
         ),
         'Fig\\Link\\' => 
         array (
@@ -537,6 +569,10 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'ApiPlatform\\Core\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/api-platform/core/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -552,6 +588,13 @@ class ComposerStaticInita7c3360e6aa1f4753411b51419391a51
             'ProxyManager\\' => 
             array (
                 0 => __DIR__ . '/..' . '/ocramius/proxy-manager/src',
+            ),
+        ),
+        'B' => 
+        array (
+            'Behat\\Transliterator' => 
+            array (
+                0 => __DIR__ . '/..' . '/behat/transliterator/src',
             ),
         ),
     );

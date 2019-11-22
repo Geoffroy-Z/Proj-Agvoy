@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Entity\Region;
 use App\Entity\Room;
 use App\Entity\Owner;
+use App\Entity\Paste;
+use App\Form\PasteType;
 use App\Form\RoomType;
+use App\Form\UnavailibilityType;
 use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,6 +108,9 @@ class RoomController extends AbstractController
         $room = new Room();
         $form = $this->createForm(RoomType::class, $room);
         $form->handleRequest($request);
+        
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $room->setOwner($user->getOwner());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -118,8 +124,7 @@ class RoomController extends AbstractController
 
         return $this->render('room/new.html.twig', [
             'room' => $room,
-            'form' => $form->createView(),
-            
+            'form' => $form->createView(),            
         ]);
     }
 

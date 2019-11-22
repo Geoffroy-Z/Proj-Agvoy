@@ -21,6 +21,10 @@ bootstrap_menu:
           label: 'Reservations'
           route: 'reservation_index'
           roles: [ 'ROLE_USER' ]
+        paste:
+          label: 'Images'
+          route: 'paste_index'
+          roles: [ 'ROLE_ADMIN' ]
           
          
     anonymousaccount:

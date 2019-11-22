@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Room;
 use App\Entity\Unavailibility;
 use App\Form\UnavailibilityType;
 use App\Repository\ReservationRepository;
@@ -30,13 +31,15 @@ class UnavailibilityController extends AbstractController
     }
     
     /**
-     * @Route("/new", name="new_unavailibility")
+     * @Route("/new/{id}", name="new_unavailibility")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Room $room): Response
     {
         $unavailibility = new Unavailibility();
         $form = $this->createForm(UnavailibilityType::class, $unavailibility);
         $form->handleRequest($request);
+        
+        $unavailibility->setRoom($room);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
