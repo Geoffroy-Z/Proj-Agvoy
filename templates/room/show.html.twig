@@ -5,6 +5,11 @@
 {% block main %}
     <h1>Room</h1>
 
+    {% if room.paste is not null %}
+   <td><img src="{{ vich_uploader_asset(room.paste, 'imageFile') }}"/></td>
+    {% endif %}
+    
+
     <table class="table">
         <tbody>
             <tr>
