@@ -17,9 +17,10 @@ class FrontOfficeController extends AbstractController
      */
     public function index()
     {
-        return $this->render('baselayout.html.twig', [
+        return $this->render('home/show.html.twig', [
             'controller_name' => 'FrontOfficeController',
         ]);
+        
     }
     
 }
