@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-        {% if is_granted('ROLE_OWNER') %}
+        {% if is_granted('ROLE_OWNER') %}                
         {% if user.owner.room is not null %}
         {% for room in user.owner.room %}
             <tr>
@@ -113,8 +113,12 @@
                         {% else %}
                 		<a href="/room/{{room.id}}/like"> Like </a>
                         {% endif %}
-{#                         {% if room.owner.user is same as likes %}#}
+                        {% if (room.owner is defined)  or (is_granted('ROLE_ADMIN'))%}
+                        {% if (room.owner.user == user) or (is_granted('ROLE_ADMIN')) %}
                     	<a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
+                    	{% endif %}
+                    	{% endif %}
+                    	
                     <a href="{{ path('reservation_new', {'id': room.id}) }}">Book</a>
                     
                     {% endif %}

@@ -39,6 +39,9 @@ class OwnerController extends AbstractController
             $entityManager->persist($owner);
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
             $user->setOwner($owner);
+            $roles=$user->getRoles();
+            $roles[]='ROLE_OWNER';
+            $user->setRoles($roles);
             $entityManager->flush();
 
             return $this->redirectToRoute('room_new');
