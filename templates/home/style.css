@@ -1,11 +1,45 @@
 body {
-    background-image: url("https://www.10wallpaper.com/wallpaper/1366x768/1712/Beautiful_mountain_lake_reflection_Travel_4K_Ultra_HD_1366x768.jpg");
-    background-color: #cccccc;
-    background-attachment:fixed;
-    background-repeat:no-repeat;
-    background-position:center center;
-    background-size: 1920px 500px;
-    background-position-y: 50px;
+  background-image: url("https://www.10wallpaper.com/wallpaper/1366x768/1712/Beautiful_mountain_lake_reflection_Travel_4K_Ultra_HD_1366x768.jpg");
+  background-color: #ffffff;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size: 1920px 500px;
+  background-position-y: 50px;
+}
+
+
+p{
+  font-family: Arial,sans-serif;
+  font-size: 1.5em;
+  width: 300px;
+  height: 70px;
+  padding-top: 15px; /*permet le centrage vertical*/
+  text-align: center;
+  color: rgb(255, 253, 253);
+  background: rgb(80, 91, 192);
+  border-radius: 8px;
+}
+p {
+  display: block;
+  margin : auto;
+}
+p:active{
+  color: #000;
+  background: #444;
+  background: linear-gradient( #555, #2C2C2C);
+  box-shadow: 1px 1px 10px black inset, 
+              0 1px 0 rgba( 255, 255, 255, 0.4);
+}
+.bouton a {
+  display:block;
+  text-align:center;
+  vertical-align:middle;
+  color:white;
+  text-decoration:none;
   }
+ 
+  
+
 
   
