@@ -81,6 +81,7 @@
 	
 
     <table class="table">
+        
         <thead>
             <tr>
                 <th>Id</th>
@@ -142,4 +143,9 @@
 	    {% endif %}
     <a href="{{ path('room_likes') }}">See the rooms you liked</a>
     {% endif %}
+
+    <style>
+       
+        {% include "room/style_index.css" %}
+    </style>
 {% endblock %}
